@@ -68,12 +68,37 @@ export default function ManageMembersModal() {
 			router.refresh()
 			onOpen('members', { server: response.data })
 		} catch (error) {
-			console.log(error)
+			console.log(
+				'🚀 ~ file: ManageMembersModal.tsx:71 ~ onRoleChange ~ error:',
+				error
+			)
 		} finally {
 			setLoadingId('')
 		}
 	}
 
+	const onKick = async (memberId: string) => {
+		try {
+			setLoadingId(memberId)
+			const url = qs.stringifyUrl({
+				url: `/api/members/${memberId}`,
+				query: {
+					serverId: server?.id,
+				},
+			})
+
+			const response = await axios.delete(url)
+			router.refresh()
+			onOpen('members', { server: response.data })
+		} catch (error) {
+			console.log(
+				'🚀 ~ file: ManageMembersModal.tsx:81 ~ onKick ~ error:',
+				error
+			)
+		} finally {
+			setLoadingId('')
+		}
+	}
 	return (
 		<Dialog open={isModalOpen} onOpenChange={onClose}>
 			<DialogContent className='bg-white text-black overflow-hidden'>
@@ -154,7 +179,14 @@ export default function ManageMembersModal() {
 													</DropdownMenuPortal>
 												</DropdownMenuSub>
 												<DropdownMenuSeparator />
-												<DropdownMenuItem>
+												<DropdownMenuItem
+													className='text-red-500'
+													onClick={() =>
+														onKick(
+															member.id
+														)
+													}
+												>
 													<Gavel className='h-4 w-4 mr-2' />
 													Kick
 												</DropdownMenuItem>
