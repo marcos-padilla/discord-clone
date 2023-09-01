@@ -26,7 +26,7 @@ export async function POST(req: Request) {
 			})
 		}
 
-		const server = prisma.server.update({
+		const server = await prisma.server.update({
 			where: {
 				id: serverId,
 				members: {
@@ -41,14 +41,13 @@ export async function POST(req: Request) {
 			data: {
 				channels: {
 					create: {
+						profileId: profile.id,
 						name,
 						type,
-						profileId: profile.id,
 					},
 				},
 			},
 		})
-
 		return NextResponse.json(server)
 	} catch (error) {
 		console.log('🚀 ~ file: route.ts:47 ~ POST ~ error:', error)
