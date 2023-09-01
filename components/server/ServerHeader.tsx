@@ -86,7 +86,10 @@ export default function ServerHeader({ role, server }: ServerHeaderProps) {
 					</DropdownMenuItem>
 				)}
 				{!isAdmin && (
-					<DropdownMenuItem className='text-red-600  px-3 py-2 text-sm cursor-pointer'>
+					<DropdownMenuItem
+						onClick={() => onOpen('leaveServer', { server })}
+						className='text-red-600  px-3 py-2 text-sm cursor-pointer'
+					>
 						Leave Server
 						<LogOut className='h-4 w-4 ml-auto' />
 					</DropdownMenuItem>
