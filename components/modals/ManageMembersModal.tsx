@@ -61,7 +61,6 @@ export default function ManageMembersModal() {
 				url: `/api/members/${memberId}`,
 				query: {
 					serverId: server?.id,
-					memberId,
 				},
 			})
 
