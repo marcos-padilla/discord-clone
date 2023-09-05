@@ -11,11 +11,14 @@ export type ModalType =
 	| 'deleteServer'
 	| 'deleteChannel'
 	| 'editChannel'
+	| 'messageFile'
 
 interface ModalData {
 	server?: Server
 	channelType?: ChannelType
 	channel?: Channel
+	apiUrl?: string
+	query?: Record<string, any>
 }
 
 interface ModalStore {
