@@ -25,6 +25,10 @@ export default function ServerMember({ member, server }: ServerMemberProps) {
 
 	const icon = roleIconMap[member.role]
 
+	const onClick = () => {
+		router.push(`/servers/${params?.serverId}/conversations/${member.id}`)
+	}
+
 	return (
 		<button
 			className={cn(
@@ -32,6 +36,7 @@ export default function ServerMember({ member, server }: ServerMemberProps) {
 				params?.memberId === member.id &&
 					'bg-zinc-700/20 dark:bg-zinc-700'
 			)}
+			onClick={onClick}
 		>
 			<UserAvatar
 				src={member.profile.imageUrl}
