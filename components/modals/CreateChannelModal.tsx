@@ -68,7 +68,7 @@ export default function CreateChannelModal() {
 		} else {
 			form.setValue('type', ChannelType.TEXT)
 		}
-	}, [])
+	}, [data])
 	const isLoading = form.formState.isSubmitting
 	const handleClose = () => {
 		form.reset()
