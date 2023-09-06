@@ -41,7 +41,6 @@ export default function ChatInput({
 	})
 
 	const isLoading = form.formState.isSubmitting
-
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		try {
 			const url = qs.stringifyUrl({
