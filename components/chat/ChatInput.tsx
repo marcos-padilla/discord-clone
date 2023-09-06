@@ -6,12 +6,13 @@ import * as z from 'zod'
 
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { Plus, Smile } from 'lucide-react'
+import { Plus } from 'lucide-react'
 
 import axios from 'axios'
 import qs from 'query-string'
 import { useModal } from '@/hooks/useModalStore'
 import EmojiPicker from '../EmojPicker'
+import { useRouter } from 'next/navigation'
 
 interface ChatInputProps {
 	apiUrl: string
@@ -31,7 +32,7 @@ export default function ChatInput({
 	type,
 }: ChatInputProps) {
 	const { onOpen } = useModal()
-
+	const router = useRouter()
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -48,8 +49,8 @@ export default function ChatInput({
 				query,
 			})
 			const resp = await axios.post(url, values)
-			console.log({ resp })
 			form.reset()
+			router.refresh()
 		} catch (error) {
 			console.log(
 				'🚀 ~ file: ChatInput.tsx:42 ~ onSubmit ~ error:',
