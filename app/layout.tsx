@@ -14,6 +14,7 @@ const font = Open_Sans({ subsets: ['latin'] })
 export const metadata: Metadata = {
 	title: 'Discord Clone',
 	description: 'Discord Clone using Next JS 13 for learning pourposes',
+	viewport: 'width=device-width, initial-scale=1.0, user-scalable=no',
 }
 
 export default function RootLayout({
