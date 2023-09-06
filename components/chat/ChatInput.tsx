@@ -88,6 +88,7 @@ export default function ChatInput({
 												: '#' + name
 										}`}
 										{...field}
+										autoComplete='off'
 									/>
 									<div className='absolute top-7 right-8'>
 										<EmojiPicker
